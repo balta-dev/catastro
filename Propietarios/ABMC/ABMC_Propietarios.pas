@@ -1,5 +1,7 @@
 unit abmc_propietarios;
-{$codepage UTF8}
+{$IFDEF Windows} 
+{$codepage UTF-8}
+{$ENDIF}
 
 interface
 

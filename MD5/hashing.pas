@@ -1,9 +1,12 @@
 unit hashing;
-{$codepage UTF8}
+{$IFDEF Windows} 
+{$codepage UTF-8}
+{$ENDIF}
 
 interface
 
-uses crt, sysutils, keyboard, box, MMSystem, estrellas, generarcirculo, md5, dos;
+uses crt, sysutils, keyboard, box, {$IFDEF Windows} MMSystem, {$ENDIF}
+	estrellas, generarcirculo, md5, dos;
 
 type 
 
@@ -40,7 +43,7 @@ case accessDeniedCount of
 end;
 
 InitKeyboard;
-while (sec >= 0) and (sec <> 9999) do
+while (sec >= 0) and (sec <> 9999) and (sec < 9999) do
 begin
 	gotoxy(10, 25);
 	writeln('Tiempo restante: ', sec, ' segundos.');
@@ -55,10 +58,9 @@ begin
 
 	sleep(1000);
 	dec(sec);
+	clrscr;
 
 end;
-
-clrscr;
 
 if accessDeniedCount >= 6 then writeln('Lamentablemente no podemos validar tu identidad. Vuelve más tarde.') else DoneKeyboard;
 
@@ -224,11 +226,14 @@ else
 				if (UsernameHash = dbAUX.usuario) and (PasswordHash = dbAUX.contrasena) then grantedAccess:=true;
 			end;
 
-			if (PasswordHash <> 'dcb9be2f604e5df91deb9659bed4748d') then begin //si no es vacia
+			if (PasswordHash <> 'dcb9be2f604e5df91deb9659bed4748d') then 
+			begin //si no es vacia
 
-			if grantedAccess then 
-			begin gotoxy(1,1); ClrEol; mciSendString('play "ok.mp3"', nil, 0, 0); blink(5, 5, '*'); textcolor(10); gotoxy(36, 28); writeln('Exito!. Presione cualquier tecla para continuar.'); readkey; clrscr end
-			else begin mciSendString('play "bad.mp3"', nil, 0, 0); textcolor(12); gotoxy(36, 28); writeln('Usuario Inexistente y/o Contraseña Incorrecta. Intente nuevamente.'); inc(accessDeniedCount); end;
+			if grantedAccess then begin
+			gotoxy(1,1); ClrEol; //mciSendString('play "ok.mp3"', nil, 0, 0);
+				blink(5, 5, '*'); textcolor(10); gotoxy(36, 28); writeln('Exito!. Presione cualquier tecla para continuar.'); readkey; clrscr end
+			else begin //mciSendString('play "bad.mp3"', nil, 0, 0);
+				textcolor(12); gotoxy(36, 28); writeln('Usuario Inexistente y/o Contraseña Incorrecta. Intente nuevamente.'); inc(accessDeniedCount); end;
 
 			end;
 
@@ -258,6 +263,7 @@ textcolor(white);
 	repeat 
 
 		//boxDO(40, 80, 8, 14);
+
 		loginHandling(grantedAccess, accessDeniedCount, Abort);
 		if (not grantedAccess) and (not Abort) then retryWait(accessDeniedCount);
 

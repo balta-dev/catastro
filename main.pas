@@ -2,14 +2,14 @@ program main;
 
 uses 
 
-	generarCirculo in 'Visuales/generarCirculo.pas', 
+	generarCirculo in 'Visuales/generarCirculo.pas',
 	estrellas in 'Visuales/estrellas.pas',
 	box in 'Visuales/box.pas',
 	selector in 'Menu/selector.pas',
 	dia in 'Visuales/dia.pas',
 	comprobante in 'Visuales/comprobante.pas',
 	hashing in 'MD5/hashing.pas', 
-	crt, 
+	crt,
 	manipulacionCadenas in 'Arboles/manipulacionCadenas.pas',
 	menu in 'Menu/menu.pas', 
 	sysutils,  
@@ -27,9 +27,9 @@ var valid:boolean;
 
 begin
 
+clrscr;
 valid := false;
 logIn(valid);
-
 if valid then principalMenu;
 
 end. 

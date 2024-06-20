@@ -1,5 +1,7 @@
 unit admin;
-{$codepage UTF8}
+{$IFDEF Windows} 
+{$codepage UTF-8}
+{$ENDIF}
 
 interface
 

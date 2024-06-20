@@ -1,10 +1,12 @@
 unit menu;
-{$codepage UTF8}
+{$IFDEF Windows} 
+{$codepage UTF-8}
+{$ENDIF}
 
 interface
 
 uses crt, 
-MMSystem, 
+{$IFDEF Windows}  MMSystem, {$ENDIF}
 arboles,
 archivoTerrenos, 
 archivoPropietarios, 
@@ -28,6 +30,7 @@ musicON:boolean;
 
 begin
 
+clrscr;
 musicON := false;
 boxDO(13, 92, 4, 29, '*', true);
 op := '0';
@@ -71,6 +74,7 @@ op := '0';
 		'7': begin mostrarSeleccion(21, 24); clrscr; graficarListado('3'); end;
 		end;
 
+		{$IFDEF Windows}
 		if lowercase(op) = 'p' then 
 		begin
 			case musicON of
@@ -78,6 +82,7 @@ op := '0';
 			false: begin musicON := true; mciSendString('play "Musica/background.mp3"', nil, 0, 0); end;
 			end;
 		end;
+		{$ENDIF}
 
 		if lowercase(op) = 'adminmenu' then
 		begin

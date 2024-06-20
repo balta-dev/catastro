@@ -1,9 +1,12 @@
 unit easter;
-{$codepage UTF8}
+{$IFDEF Windows} 
+{$codepage UTF-8}
+{$ENDIF}
 
 interface
 
-uses MMSystem, crt, keyboard, sysutils;
+uses {$IFDEF Windows}  MMSystem, {$ENDIF}
+	crt, keyboard, sysutils;
 
 type line = array[1..28] of string;
 
@@ -199,7 +202,7 @@ InitKeyboard;
 
 	clrscr;
 	//mciSendString('pause "Musica/background.mp3"',nil, 0, 0);
-	mciSendString('play "Musica/easter.mp3"',nil, 0, 0);
+	//mciSendString('play "Musica/easter.mp3"',nil, 0, 0);
 	dibujarLetras;
 	dibujarLogo;
 	gotoxy(45, 20);
@@ -208,7 +211,7 @@ InitKeyboard;
 	gotoxy(48, 21);
 	writeln('Y SÍ, COMO BOQUITA!');
 
-	if TKeyRecord(TranslateKeyEvent(GetKeyEvent)).KeyCode<>0 then mciSendString('pause "Musica/easter.mp3"',nil, 0, 0);
+	//if TKeyRecord(TranslateKeyEvent(GetKeyEvent)).KeyCode<>0 then mciSendString('pause "Musica/easter.mp3"',nil, 0, 0);
 
 DoneKeyboard;
 
@@ -217,7 +220,7 @@ end;
 procedure eb2();
 begin
 
-	mciSendString('play "Musica/arclb.mp3"',nil, 0, 0);
+	//mciSendString('play "Musica/arclb.mp3"',nil, 0, 0);
 	sleep(2200);
 	gotoxy(60, 26);
 	writeln('A River cuando lo bailo, lo bailo de noche y de día..');
