@@ -18,7 +18,7 @@ Una pestaña de Inicio de Sesión para poder acceder al sistema. Cuando se compi
 El usuario registrado pasa a ser automáticamente registrado como empleado. Luego, se accede a un menú de selección. 
 
 > [!NOTE]
-> Si escribis "adminmenu" en el menú, podes acceder al submenú de empleados. Esta información no debería conocerla alguien que no gestione usuarios.
+> Si escribis "adminmenu" en el menú, podes acceder al submenú de empleados. Esta información no debería conocerla alguien que no gestione usuarios. Si ingresas "p" en el menu de selección, activas música de fondo. Si quieres pausar la música, presiona "p" nuevamente.
 
 &emsp;
 
@@ -80,6 +80,6 @@ Está diseñado con archivos aleatorios que contienen registros de información 
 * Tiene un manejador de archivos `hashing.pas` que se encarga de "encriptar" la información de inicio de sesión. Se guarda como registro de información ofuscada hasheada. En la ejecución de programa, los datos introducidos son hasheados y comparados con los elementos de `db.dat`, y si ambos datos coinciden entonces se brinda acceso.
 * Tiene dos units (archivo y ABMC) tanto de propietarios como de terrenos, ambos gestionan lo más importante del programa.
 * Tiene una unit `paginas.pas` que sirve de manejador de páginas que permite mostrar todos los terrenos. Comprueba que la pantalla sea suficiente para mostrar los mensajes completamente, un sistema para subir o bajar página (crea sublistas y restaura una página utilizando los procedimientos de las ventanas flotantes).
-* Tiene un manejador de música `music.pas` que se encarga de crear el formato para elegir aleatoriamente una canción, colocarle nombre y reproducirla en medio de la ejecución del programa. Viene incluída una carpeta llamada "music" que almacena una canción de fondo .mp3. No está disponible su uso en Linux. Existen otros dos archivos de audio (easter eggs).
+* Tiene una implementación simple de reproducción de música. Viene incluída una carpeta llamada "music" que almacena una canción de fondo .mp3. No está disponible su uso en Linux. Existen otros dos archivos de audio (easter eggs).
 * Tiene una unit `dia.pas` que crea el formato para mostrar el día actual.
 * Tiene una carpeta de visuales que contiene la generación de los gráficos del programa (cajas, comprobante, easter eggs, estrellas, círculos).
