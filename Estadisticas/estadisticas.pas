@@ -117,11 +117,13 @@ procedure contarPropietarios(arrayPropietarios:tArrayMaxPropietarios; var totalP
 var i:word;
 begin
 
-	totalPropietarios := 0;
-	for i:=1 to length(arrayPropietarios) do if arrayPropietarios[i]<>'' then totalPropietarios+=1;
+    totalPropietarios := 0;
+    for i:=1 to length(arrayPropietarios) do
+    begin
+     if (arrayPropietarios[i]<>'') and (length(arrayPropietarios[i])=10) then begin totalPropietarios+=1; end;
+    end;
 
 end;
-
 //sirve para devolver algún dato particular. previamente habian 2 variables que siempre eran devueltas. si bien es mas complicado leerlo, da más facilidades de mantenimiento.
 procedure retornoDatoPropietarios(opcion:byte; var archivoPropietarios:tArchivoPropietarios; var archivoTerrenos:tArchivoTerrenos; arrayPropietarios:tArrayMaxPropietarios; var ret:word);
 var i, cantidadContada, cantidadTerrenos:word;
@@ -261,6 +263,7 @@ begin
 	//primer variante, debe tener salida solamente de totalPropietarios y propietariosMasUnoTerrenos
 
 	devolverArrayPropietarios(archivoPropietarios, archivoTerrenos, arrayPropietarios);
+	ret := 0;
 	retornoDatoPropietarios(1, archivoPropietarios, archivoTerrenos, arrayPropietarios, ret); //opcion 1 = ret := propietariosMasUnoTerrenos
 	contarPropietarios(arrayPropietarios, totalPropietarios);
 
@@ -399,6 +402,7 @@ begin
 
 	clrscr;
 	devolverArrayPropietarios(archivoPropietarios, archivoTerrenos, arrayPropietarios);
+	ret := 0;
 	retornoDatoPropietarios(2, archivoPropietarios, archivoTerrenos, arrayPropietarios, ret); //opcion 2 = ret := dadosDeBaja
 	contarPropietarios(arrayPropietarios, totalPropietarios);
 

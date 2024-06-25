@@ -662,7 +662,6 @@ begin
 			leerDatosPropietario(Propietario, Respuesta, archivoPropietarios);
 			gotoxy(25, whereY);
 			write('¿Los datos son correctos? S/N: ');
-			readln(op);
 
 			confirmacionSubAltaPropietarios(archivoPropietarios, Propietario);
 	end;
